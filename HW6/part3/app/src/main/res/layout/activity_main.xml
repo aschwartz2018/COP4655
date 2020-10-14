@@ -15,10 +15,12 @@
         android:ems="10"
         android:hint="@string/input1"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/operator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/input2"
@@ -29,11 +31,13 @@
         android:ems="10"
         android:hint="@string/input2"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/equals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/operator" />
+        app:layout_constraintTop_toBottomOf="@+id/operator"
+        android:gravity="center_horizontal" />
 
     <Button
         android:id="@+id/equals"
@@ -60,18 +64,33 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input1"
-        android:onClick="operatorMenu" />
+        android:onClick="operatorMenu"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/answer"
-        android:layout_width="251dp"
-        android:layout_height="120dp"
+        android:layout_width="236dp"
+        android:layout_height="103dp"
         android:layout_marginBottom="50dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="231dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/nameZnumber"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="18dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

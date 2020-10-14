@@ -4,4 +4,5 @@
     <string name="input2">2nd number</string>
     <string name="operator">Operator</string>
     <string name="equals">=</string>
+    <string name="nameZnumber">Alex Schwartz: Z23482130"</string>
 </resources>
