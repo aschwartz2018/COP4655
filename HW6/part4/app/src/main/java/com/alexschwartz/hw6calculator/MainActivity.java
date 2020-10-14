@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 if(firstField.getText().length()==0 || secondField.getText().length()==0) {
                     answer.setText("Missing input(s)");
                 } else {
-                    float num1 = Float.valueOf(firstField.getText().toString());
-                    float num2 = Float.valueOf(secondField.getText().toString());
+                    float num1 = Float.parseFloat(firstField.getText().toString());
+                    float num2 = Float.parseFloat(secondField.getText().toString());
                     if(operator.getText()=="Add") {
                         answer.setText(Float.toString(num1 + num2));
                     } else if(operator.getText()=="Subtract") {
