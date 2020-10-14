@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW6 Calculator</string>
+    <string name="input1">1st number</string>
+    <string name="input2">2nd number</string>
+    <string name="operator">Operator</string>
+    <string name="equals">=</string>
+</resources>
