@@ -1,0 +1,41 @@
+#backBtn, #cityName, #weather1, #notFound, #locationInfo, footer {
+    text-align: center;
+}
+  
+td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    width: 25%;
+    font-size: 14px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+footer {
+    color: darkblue;
+}
+
+.responsive {
+    height: auto;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+#backBtn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#locationInfo {
+    display: inline;
+}
+
+#buttons {
+    text-align: center;
+}

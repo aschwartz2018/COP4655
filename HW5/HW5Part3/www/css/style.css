@@ -1,0 +1,117 @@
+body, html{
+    height: 100%;
+    margin: 0;
+}
+h1{
+    font-size:40px;
+    font-weight: bold;
+}
+
+h2{
+    font-size:30px;
+    font-weight: bold;
+}
+
+h3{
+    font-size:20px;
+    font-weight:bold;
+}
+
+#page {
+  height: 100%; width: 100%;
+ background-color:white;
+}
+#tdcontent {
+  height: 100%;
+}
+
+iframe{
+    position:fixed; 
+    top:16%;  
+    bottom:2%; 
+    left: 12%;
+    width:75%; 
+    height:75%; 
+    margin:0; 
+    padding: 0;
+    overflow:hidden; 
+    z-index:999999;
+}
+
+button{
+    border-radius: 25px;
+}
+
+#content {
+  font-family: Tahoma, 'sans-serif' ;
+  text-align:center;
+  background-color:white;
+  height:100%;
+  overflow: auto; /* or overflow: hidden; */
+}
+
+
+#home{
+    font-weight: bold;
+    font-size:14px;
+    width: 25%;
+    /*height: 20%;*/
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 0 0 0 0;
+}
+#map{
+    font-weight: bold;
+    font-size:14px;
+    width:25%;
+    /*height: 20%;*/
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 0 0 0 0;
+}
+
+
+#weather{
+    font-weight: bold;
+    font-size:14px;
+    width: 25%;
+    /*height: 20%;*/
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 0 0 0 0;
+}
+
+#currency{
+    font-size:14px;
+    font-weight: bold;
+    width: 20%;
+    /*height: 20%;*/
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 0 0 0 0;
+}
+
+.mytd {
+    border: 1px solid black;
+    text-align: center;
+    width: 100%;
+}
+
+.responsive {
+    padding-top: 10px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.mytable {
+    table-layout: fixed;
+    position: absolute;
+    left: 2.5%;
+	top: 150px;
+	bottom: 10px;
+	height:65%;
+    width: 95%;
+}

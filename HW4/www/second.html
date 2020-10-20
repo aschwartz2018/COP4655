@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script2.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <img src='./header.png' alt='WeatherIcon' class='responsive' style="width: 50%">
+
+    <div style="font-size: 16px; padding-top: 5px; padding-bottom: 5px;" id='cityName'></div>
+
+    <table>
+        <tr>
+            <td>Temperature</td>
+            <td id='weather1'></td>
+        </tr>
+        <tr>
+            <td>Feels like</td>
+            <td id='weather2'></td>
+        </tr>
+        <tr>
+            <td>Min Temperature</td>
+            <td id='weather3'></td>
+        </tr>
+        <tr>
+            <td>Max Temperature</td>
+            <td id='weather4'></td>
+        </tr>
+        <tr>
+            <td>Cloudiness</td>
+            <td id='weather5'></td>
+        </tr>
+        <tr>
+            <td>Pressure</td>
+            <td id='weather6'></td>
+        </tr>
+        <tr>
+            <td>Humidity</td>
+            <td id='weather7'></td>
+        </tr>
+        <tr>
+            <td>Wind Speed</td>
+            <td id='weather8'></td>
+        </tr>
+        <tr>
+            <td>Wind Direction</td>
+            <td id='weather9'></td>
+        </tr>
+        <tr>
+            <td>Geolocation</td>
+            <td id='weather10'></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div id='map'></div>
+
+    <form id='backBtn'>
+        <input type=button id='backBtn' onClick="location.href='./index.html'" value='Go back'>
+    </form>
+
+    <footer>Made by Alex Schwartz - Z23482130</footer>
+
+</body>
+
+</html>

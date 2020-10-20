@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <img src='./header.png' alt='WeatherIcon' class='responsive'>
+
+    <br>
+
+    <div id='buttons'>
+        <form id='locationInfo'>
+            <input type="text" id="location" placeholder="Enter City, State or ZIP">
+            <button type="submit" id="cityBtn">City</button>
+            <button type='submit' id='zipBtn'>ZIP</button>
+        </form>
+        
+        <button type="submit" id='gpsBtn'><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+    </div>
+
+    <br>
+
+    <div id='notFound'>Click on location icon to use current location</div>
+    
+    <br>
+
+    <footer>Made by Alex Schwartz - Z23482130</footer>
+
+</body>
+
+</html>
