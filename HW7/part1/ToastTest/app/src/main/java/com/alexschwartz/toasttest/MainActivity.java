@@ -11,5 +11,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Displaying Toast with Hello World message
         Toast.makeText(getApplicationContext(),"Hello World",Toast.LENGTH_SHORT).show();
+
     }
 }
