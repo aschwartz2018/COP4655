@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/resultsPage"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ListView
+                android:id="@+id/weatherHeadings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dividerHeight="-20dp" />
+
+            <ListView
+                android:id="@+id/weatherData"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dividerHeight="-20dp" />
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/myMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goBack"
+            android:text="Go back" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchPage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter a City or ZIP"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/cityBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cityBtn"
+            android:text="City or ZIP" />
+
+        <Button
+            android:id="@+id/gpsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="gpsBtn"
+            android:text="GPS" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.tutorialspoint7.myapplication;
+package com.alexschwartz.nativeweatherapp;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
