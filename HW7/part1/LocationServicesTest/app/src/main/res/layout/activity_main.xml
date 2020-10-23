@@ -11,4 +11,12 @@
         android:layout_height = "wrap_content"
         android:text = "getlocation"/>
 
+    <TextView
+        android:id="@+id/myName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alex Schwartz: Z23482130"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
 </LinearLayout>

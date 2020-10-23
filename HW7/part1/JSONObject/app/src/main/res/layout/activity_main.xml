@@ -8,5 +8,21 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="620dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/myName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="60dp"
+        android:text="Alex Schwartz: Z23482130" />
+
 </RelativeLayout>
