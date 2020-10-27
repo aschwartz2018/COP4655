@@ -1,2 +1,2 @@
 # COP4655
-# Homeworks and Project in MobileApps class
+Homeworks and Project in MobileApps class
