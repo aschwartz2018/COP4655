@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     public GPSTracker gps;
     public boolean fromGPSBtn = false;
     public boolean gpsGood=false;
-    public JSONObject myJson;
 
     public MainActivity() {
         list1.add("City");
@@ -140,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             json[0] = new JSONObject(response);
-                            myJson = json[0];
                             String cityFromJSON = json[0].getString("name");
                             String temperature = json[0].getJSONObject("main").getString("temp");
                             String tempFeels = json[0].getJSONObject("main").getString("feels_like");
