@@ -13,10 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import org.apache.commons.io.IOUtils;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public ListView headingsList;
     public ListView dataList;
     public EditText inputField;
-    public ArrayAdapter<String> arrayAdapter;
+    public ArrayAdapter<String> arrayAdapter1;
+    public ArrayAdapter<String> arrayAdapter2;
     public ArrayList<String> list1 = new ArrayList<>();
     public ArrayList<String> list2;
     public String city;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public GPSTracker gps;
     public boolean fromGPSBtn = false;
     public boolean gpsGood=false;
+    public JSONObject myJson;
 
     public MainActivity() {
         list1.add("City");
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
+        arrayAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list1);
+        arrayAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         searchPage = findViewById(R.id.searchPage);
         resultsPage = findViewById(R.id.resultsPage);
     }
@@ -120,64 +127,79 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        try {
-            JSONObject json;
-            if(city!="NoCity")
-                json = new JSONObject(IOUtils.toString(new URL(link+keyword+city), Charset.forName("UTF-8")));
-            else
-                json = new JSONObject(IOUtils.toString(new URL(link+"lat="+lat+"&lon="+lon), Charset.forName("UTF-8")));
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url="";
+        final JSONObject[] json = {null};
+        if(city!="NoCity")
+            url=link+keyword+city;
+        else
+            url=link+"lat="+lat+"&lon="+lon;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            json[0] = new JSONObject(response);
+                            myJson = json[0];
+                            String cityFromJSON = json[0].getString("name");
+                            String temperature = json[0].getJSONObject("main").getString("temp");
+                            String tempFeels = json[0].getJSONObject("main").getString("feels_like");
+                            String minTemp = json[0].getJSONObject("main").getString("temp_min");
+                            String maxTemp = json[0].getJSONObject("main").getString("temp_max");
+                            String cloudiness = json[0].getJSONArray("weather").getJSONObject(0).getString("main");
+                            String pressure = json[0].getJSONObject("main").getString("pressure");
+                            String humidity = json[0].getJSONObject("main").getString("humidity");
+                            String windSpeed = json[0].getJSONObject("wind").getString("speed");
+                            String windDeg = json[0].getJSONObject("wind").getString("deg");
+                            String latFromJSON = json[0].getJSONObject("coord").getString("lat");
+                            String lonFromJSON = json[0].getJSONObject("coord").getString("lon");
 
-            String cityFromJSON = json.getString("name");
-            String temperature = json.getJSONObject("main").getString("temp");
-            String tempFeels = json.getJSONObject("main").getString("feels_like");
-            String minTemp = json.getJSONObject("main").getString("temp_min");
-            String maxTemp = json.getJSONObject("main").getString("temp_max");
-            String cloudiness = json.getJSONArray("weather").getJSONObject(0).getString("main");
-            String pressure = json.getJSONObject("main").getString("pressure");
-            String humidity = json.getJSONObject("main").getString("humidity");
-            String windSpeed = json.getJSONObject("wind").getString("speed");
-            String windDeg = json.getJSONObject("wind").getString("deg");
-            String latFromJSON = json.getJSONObject("coord").getString("lat");
-            String lonFromJSON = json.getJSONObject("coord").getString("lon");
+                            searchPage.setVisibility(View.GONE);
+                            resultsPage.setVisibility(View.VISIBLE);
 
-            searchPage.setVisibility(View.GONE);
-            resultsPage.setVisibility(View.VISIBLE);
+                            headingsList = findViewById(R.id.weatherHeadings);
+                            headingsList.setAdapter(arrayAdapter1);
+                            headingsList.setEnabled(false);
 
-            headingsList = findViewById(R.id.weatherHeadings);
-            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list1);
-            headingsList.setAdapter(arrayAdapter);
-            headingsList.setEnabled(false);
+                            dataList = findViewById(R.id.weatherData);
+                            list2 = new ArrayList<>();
+                            list2.add(cityFromJSON);
+                            list2.add(temperature+" degF");
+                            list2.add(tempFeels+" degF");
+                            list2.add(minTemp+" degF");
+                            list2.add(maxTemp+" degF");
+                            list2.add(cloudiness);
+                            list2.add(pressure+" hpa");
+                            list2.add(humidity+"%");
+                            list2.add(windSpeed+" mph");
+                            list2.add(windDeg+" degrees");
+                            list2.add(latFromJSON+" lat, "+lonFromJSON+" lon");
+                            arrayAdapter2.clear();
+                            arrayAdapter2.addAll(list2);
+                            dataList.setAdapter(arrayAdapter2);
+                            dataList.setEnabled(false);
 
-            dataList = findViewById(R.id.weatherData);
-            list2 = new ArrayList<>();
-            list2.add(cityFromJSON);
-            list2.add(temperature+" degF");
-            list2.add(tempFeels+" degF");
-            list2.add(minTemp+" degF");
-            list2.add(maxTemp+" degF");
-            list2.add(cloudiness);
-            list2.add(pressure+" hpa");
-            list2.add(humidity+"%");
-            list2.add(windSpeed+" mph");
-            list2.add(windDeg+" degrees");
-            list2.add(latFromJSON+" lat, "+lonFromJSON+" lon");
-            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2);
-            dataList.setAdapter(arrayAdapter);
-            dataList.setEnabled(false);
+                            String embedMap = "<iframe frameborder='0' style='width:100%; height:100%; border:0'"
+                                    +" src='https://www.google.com/maps/embed/v1/view?key=AIzaSyC0FDwy4JSx7rRULalVcSaz7K_9pOGJ8Yc&center="
+                                    + latFromJSON + ","+ lonFromJSON + "&zoom=15'></iframe>";
 
-            String embedMap = "<iframe frameborder='0' style='width:100%; height:100%; border:0'"
-                +" src='https://www.google.com/maps/embed/v1/view?key=AIzaSyC0FDwy4JSx7rRULalVcSaz7K_9pOGJ8Yc&center="
-                    + latFromJSON + ","+ lonFromJSON + "&zoom=15'></iframe>";
+                            WebView webview = (WebView) findViewById(R.id.myMap);
+                            webview.setWebViewClient(new WebViewClient());
+                            webview.getSettings().setJavaScriptEnabled(true);
+                            webview.loadData(embedMap, "text/html", null);
+                        } catch (Exception e) {
+                            searchPage.setVisibility(View.VISIBLE);
+                            resultsPage.setVisibility(View.GONE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("JSON request didn't work");
+            }
+        });
 
-            WebView webview = (WebView) findViewById(R.id.myMap);
-            webview.setWebViewClient(new WebViewClient());
-            webview.getSettings().setJavaScriptEnabled(true);
-            webview.loadData(embedMap, "text/html", null);
-        } catch (Exception e) {
-            searchPage.setVisibility(View.VISIBLE);
-            resultsPage.setVisibility(View.GONE);
-        }
-
+        queue.add(stringRequest);
     }
 
     public void goBack(View view) {
