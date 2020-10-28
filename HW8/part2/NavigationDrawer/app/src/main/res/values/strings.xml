@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NavigationDrawer</string>
+    <string name="Open">k</string>
+    <string name="Close">q</string>
+</resources>
