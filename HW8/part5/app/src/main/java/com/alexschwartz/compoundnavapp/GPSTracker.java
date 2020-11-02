@@ -9,9 +9,9 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-
 import androidx.annotation.NonNull;
 
 public class GPSTracker extends Service implements LocationListener {
@@ -188,5 +188,9 @@ public class GPSTracker extends Service implements LocationListener {
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
     }
 }
