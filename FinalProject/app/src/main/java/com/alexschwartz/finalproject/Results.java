@@ -15,18 +15,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class Results extends FragmentActivity implements OnMapReadyCallback {
 
     private YelpData[] yelp = Search.yelpData;
     public static int index;
-    private TextView nameView;
-    private TextView ratingView;
-    private TextView addressView;
-    private TextView phoneView;
-    private TextView openView;
-    private Button previous;
-    private Button next;
+    private static ArrayList<Object[]> favoriteData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +38,20 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        nameView = findViewById(R.id.insertName);
-        ratingView = findViewById(R.id.insertRating);
-        addressView = findViewById(R.id.insertAddress);
-        phoneView = findViewById(R.id.insertPhone);
-        openView = findViewById(R.id.insertOpen);
-        previous = findViewById(R.id.previous);
-        next = findViewById(R.id.next);
+        TextView nameView = findViewById(R.id.insertName);
+        TextView ratingView = findViewById(R.id.insertRating);
+        TextView addressView = findViewById(R.id.insertAddress);
+        TextView phoneView = findViewById(R.id.insertPhone);
+        TextView openView = findViewById(R.id.insertOpen);
+        Button previous = findViewById(R.id.previous);
+        Button next = findViewById(R.id.next);
+        Button favoriteBtn = findViewById(R.id.favoriteBtn);
 
         if(index == 0) previous.setVisibility(View.GONE);
 
         if(yelp != null) {
             nameView.setText(yelp[index].name);
-            ratingView.setText(String.valueOf(yelp[index].rating)+"/5.0");
+            ratingView.setText(yelp[index].rating +"/5.0");
             addressView.setText(yelp[index].address);
             phoneView.setText(yelp[index].phone_num);
             openView.setText(String.valueOf(!yelp[index].closed));
@@ -57,8 +59,10 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
             if(index == yelp.length-1) {
                 next.setVisibility(View.GONE);
             }
+            favoriteBtn.setVisibility(View.VISIBLE);
         } else {
             next.setVisibility(View.GONE);
+            favoriteBtn.setVisibility(View.GONE);
         }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -108,20 +112,45 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
     }
 
     public void previousBtn(View view) {
-        if(yelp != null && index >= 1) {
-            index -= 1;
-            Intent results = new Intent(getApplicationContext(), Results.class);
-            startActivity(results);
-        }
+        index -= 1;
+        Intent results = new Intent(getApplicationContext(), Results.class);
+        startActivity(results);
     }
 
     public void nextBtn(View view) {
-        if(yelp != null && yelp.length>=2) {
-            if(index <= yelp.length-2) {
-                index += 1;
-                Intent results = new Intent(getApplicationContext(), Results.class);
-                startActivity(results);
-            }
+        index += 1;
+        Intent results = new Intent(getApplicationContext(), Results.class);
+        startActivity(results);
+    }
+
+    public void favoriteBtn(View view) {
+        try {
+            FileInputStream fi = new FileInputStream(new File(getFilesDir(), "favList.ser"));
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            favoriteData = (ArrayList<Object[]>) oi.readObject();
+            oi.close();
+            fi.close();
+        } catch(Exception e) {
+        }
+
+        if(favoriteData == null) {
+            favoriteData = new ArrayList<>();
+        }
+
+        Object[] eachData = new Object[2];
+        eachData[0] = MainActivity.email;
+        eachData[1] = yelp[index];
+        favoriteData.add(eachData);
+
+        try
+        {
+            FileOutputStream fos = new FileOutputStream(new File(getFilesDir(), "favList.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(favoriteData);
+            oos.close();
+            fos.close();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

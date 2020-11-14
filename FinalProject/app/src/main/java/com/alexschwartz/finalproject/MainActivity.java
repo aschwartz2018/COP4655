@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private int RC_SIGN_IN = 1;
     private boolean loggedIn;
     private String name;
-    private String email;
+    public static String email;
     private String photoURL;
     private TextView nameView;
     private TextView emailView;

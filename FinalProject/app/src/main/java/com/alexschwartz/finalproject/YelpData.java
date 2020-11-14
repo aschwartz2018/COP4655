@@ -1,6 +1,8 @@
 package com.alexschwartz.finalproject;
 
-public class YelpData {
+import java.io.Serializable;
+
+public class YelpData implements Serializable {
     public String name;
     public double rating;
     public String address;

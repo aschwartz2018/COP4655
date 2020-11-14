@@ -155,4 +155,14 @@
         android:text="Next"
         android:onClick="nextBtn"/>
 
+    <Button
+        android:id="@+id/favoriteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="147dp"
+        android:text="Favorite"
+        android:onClick="favoriteBtn"/>
+
 </RelativeLayout>
