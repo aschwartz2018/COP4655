@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SignInButton signInButton;
     private RelativeLayout signedInView;
+    private RelativeLayout signedOutView;
     private BottomNavigationView bottomNavigationView;
     private GoogleSignInClient googleSignInClient;
     private int RC_SIGN_IN = 1;
@@ -53,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
         Button signOutButton = findViewById(R.id.sign_out_button);
         signInButton = findViewById(R.id.sign_in_button);
         signedInView = findViewById(R.id.signed_in_view);
+        signedOutView = findViewById(R.id.signed_out_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         nameView = findViewById(R.id.name);
         emailView = findViewById(R.id.email);
         profilePicture = findViewById(R.id.account_photo);
 
         if(!loggedIn) {
-            signInButton.setVisibility(View.VISIBLE);
+            signedOutView.setVisibility(View.VISIBLE);
             signedInView.setVisibility(View.GONE);
             bottomNavigationView.setVisibility(View.GONE);
         } else {
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             email = loadData.getString(EMAIL,"");
             photoURL = loadData.getString(PHOTO_URL,"");
 
-            signInButton.setVisibility(View.GONE);
+            signedOutView.setVisibility(View.GONE);
             signedInView.setVisibility(View.VISIBLE);
             bottomNavigationView.setVisibility(View.VISIBLE);
             bottomNavigationView.setSelectedItemId(R.id.action_home);
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 googleSignInClient.signOut();
                 signedInView.setVisibility(View.GONE);
-                signInButton.setVisibility(View.VISIBLE);
+                signedOutView.setVisibility(View.VISIBLE);
                 bottomNavigationView.setVisibility(View.GONE);
                 loggedIn = false;
 
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
             signedInView.setVisibility(View.VISIBLE);
-            signInButton.setVisibility(View.GONE);
+            signedOutView.setVisibility(View.GONE);
             bottomNavigationView.setVisibility(View.VISIBLE);
             loggedIn = true;
 

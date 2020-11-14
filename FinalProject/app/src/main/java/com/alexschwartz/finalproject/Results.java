@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +28,6 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
 
     private YelpData[] yelp = Search.yelpData;
     public static int index;
-    private static ArrayList<Object[]> favoriteData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +124,9 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
     }
 
     public void favoriteBtn(View view) {
+        int favCount = 1;
+        ArrayList<Object[]> favoriteData = null;
+
         try {
             FileInputStream fi = new FileInputStream(new File(getFilesDir(), "favList.ser"));
             ObjectInputStream oi = new ObjectInputStream(fi);
@@ -137,20 +140,32 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
             favoriteData = new ArrayList<>();
         }
 
-        Object[] eachData = new Object[2];
-        eachData[0] = MainActivity.email;
-        eachData[1] = yelp[index];
-        favoriteData.add(eachData);
+        for(int i=0; i<favoriteData.size(); i++) {
+            if(favoriteData.get(i)[0].equals(MainActivity.email)) {
+                favCount++;
+            }
+        }
 
-        try
-        {
-            FileOutputStream fos = new FileOutputStream(new File(getFilesDir(), "favList.ser"));
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(favoriteData);
-            oos.close();
-            fos.close();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
+        if(favCount == 6) {
+            Toast.makeText(getApplicationContext(),"Can't add to favorites", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Added to favorites", Toast.LENGTH_SHORT).show();
+
+            Object[] eachData = new Object[2];
+            eachData[0] = MainActivity.email;
+            eachData[1] = yelp[index];
+            favoriteData.add(eachData);
+
+            try
+            {
+                FileOutputStream fos = new FileOutputStream(new File(getFilesDir(), "favList.ser"));
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(favoriteData);
+                oos.close();
+                fos.close();
+            } catch(IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 }
