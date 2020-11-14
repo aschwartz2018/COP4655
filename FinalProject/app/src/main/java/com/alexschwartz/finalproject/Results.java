@@ -116,8 +116,8 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
     }
 
     public void nextBtn(View view) {
-        if(yelp != null) {
-            if(index < yelp.length) {
+        if(yelp != null && yelp.length>=2) {
+            if(index <= yelp.length-2) {
                 index += 1;
                 Intent results = new Intent(getApplicationContext(), Results.class);
                 startActivity(results);
