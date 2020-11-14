@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private static String EMAIL = "email";
     private static String PHOTO_URL = "photoURL";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences loadData = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         loggedIn = loadData.getBoolean(LOGGED_IN,false);
-        System.out.println(loadData.getString(NAME,""));
 
         Button signOutButton = findViewById(R.id.sign_out_button);
         signInButton = findViewById(R.id.sign_in_button);
@@ -109,9 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(EMAIL,"");
                 editor.putString(PHOTO_URL,"");
                 editor.apply();
+
+                Search.yelpData = null;
             }
         });
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.action_home).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -122,16 +123,16 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(mainActivity);
                         break;
                     case R.id.action_search:
-                        Intent results = new Intent(getApplicationContext(), Search.class);
-                        startActivity(results);
+                        Intent search = new Intent(getApplicationContext(), Search.class);
+                        startActivity(search);
                         break;
                     case R.id.action_results:
-                        Intent map = new Intent(getApplicationContext(), Results.class);
-                        startActivity(map);
+                        Intent results = new Intent(getApplicationContext(), Results.class);
+                        startActivity(results);
                         break;
                     case R.id.action_favorites:
-                        Intent history = new Intent(getApplicationContext(), Favorites.class);
-                        startActivity(history);
+                        Intent favorites = new Intent(getApplicationContext(), Favorites.class);
+                        startActivity(favorites);
                         break;
                 }
                 return true;

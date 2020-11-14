@@ -25,16 +25,16 @@ public class Favorites extends AppCompatActivity {
                         startActivity(mainActivity);
                         break;
                     case R.id.action_search:
-                        Intent results = new Intent(getApplicationContext(), Search.class);
-                        startActivity(results);
+                        Intent search = new Intent(getApplicationContext(), Search.class);
+                        startActivity(search);
                         break;
                     case R.id.action_results:
-                        Intent map = new Intent(getApplicationContext(), Results.class);
-                        startActivity(map);
+                        Intent results = new Intent(getApplicationContext(), Results.class);
+                        startActivity(results);
                         break;
                     case R.id.action_favorites:
-                        Intent history = new Intent(getApplicationContext(), Favorites.class);
-                        startActivity(history);
+                        Intent favorites = new Intent(getApplicationContext(), Favorites.class);
+                        startActivity(favorites);
                         break;
                 }
                 return true;
