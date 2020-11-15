@@ -98,6 +98,9 @@ public class Search extends AppCompatActivity {
                     int countJSON = jsonArray.length();
                     if(countJSON < total)
                         total = countJSON;
+                    if(total == 0) {
+                        return;
+                    }
                     yelpData = new YelpData[total];
                     for(int i=0; i<total; i++) {
                         JSONObject jsonBusiness = jsonArray.getJSONObject(i);
