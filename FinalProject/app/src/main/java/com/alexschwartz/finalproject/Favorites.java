@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +17,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Favorites extends AppCompatActivity {
+
+    public static YelpData specFavData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,17 @@ public class Favorites extends AppCompatActivity {
         } catch(Exception e) {
         }
 
-        TextView fav0 = findViewById(R.id.fav0);
-        TextView fav1 = findViewById(R.id.fav1);
-        TextView fav2 = findViewById(R.id.fav2);
-        TextView fav3 = findViewById(R.id.fav3);
-        TextView fav4 = findViewById(R.id.fav4);
+        Button fav0 = findViewById(R.id.fav0);
+        Button fav1 = findViewById(R.id.fav1);
+        Button fav2 = findViewById(R.id.fav2);
+        Button fav3 = findViewById(R.id.fav3);
+        Button fav4 = findViewById(R.id.fav4);
+
+        fav0.setEnabled(false);
+        fav1.setEnabled(false);
+        fav2.setEnabled(false);
+        fav3.setEnabled(false);
+        fav4.setEnabled(false);
 
         Button remove0 = findViewById(R.id.remove0);
         Button remove1 = findViewById(R.id.remove1);
@@ -62,26 +69,116 @@ public class Favorites extends AppCompatActivity {
                 if(MainActivity.email.equals(email)) {
                     if(count==0) {
                         fav0.setText(yelp.name);
+                        fav0.setEnabled(true);
                         remove0.setVisibility(View.VISIBLE);
                     } else if(count==1) {
                         fav1.setText(yelp.name);
+                        fav1.setEnabled(true);
                         remove1.setVisibility(View.VISIBLE);
                     } else if(count==2) {
                         fav2.setText(yelp.name);
+                        fav2.setEnabled(true);
                         remove2.setVisibility(View.VISIBLE);
                     } else if(count==3) {
                         fav3.setText(yelp.name);
+                        fav3.setEnabled(true);
                         remove3.setVisibility(View.VISIBLE);
                     } else {
                         fav4.setText(yelp.name);
+                        fav4.setEnabled(true);
                         remove4.setVisibility(View.VISIBLE);
                     }
                     count++;
                 }
             }
         }
-
         final ArrayList<Object[]> finalFav = fav;
+
+        fav0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0; i<finalFav.size(); i++) {
+                    if(finalFav.get(i)[0].equals(MainActivity.email)) {
+                        specFavData = (YelpData) finalFav.get(i)[1];
+                        break;
+                    }
+                }
+                Intent specific = new Intent(getApplicationContext(), SpecificFavData.class);
+                startActivity(specific);
+            }
+        });
+
+        fav1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count=0;
+                for(int i=0; i<finalFav.size(); i++) {
+                    if(finalFav.get(i)[0].equals(MainActivity.email)) {
+                        if(count==1) {
+                            specFavData = (YelpData) finalFav.get(i)[1];
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                Intent specific = new Intent(getApplicationContext(), SpecificFavData.class);
+                startActivity(specific);
+            }
+        });
+
+        fav2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count=0;
+                for(int i=0; i<finalFav.size(); i++) {
+                    if(finalFav.get(i)[0].equals(MainActivity.email)) {
+                        if(count==2) {
+                            specFavData = (YelpData) finalFav.get(i)[1];
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                Intent specific = new Intent(getApplicationContext(), SpecificFavData.class);
+                startActivity(specific);
+            }
+        });
+
+        fav3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count=0;
+                for(int i=0; i<finalFav.size(); i++) {
+                    if(finalFav.get(i)[0].equals(MainActivity.email)) {
+                        if(count==3) {
+                            specFavData = (YelpData) finalFav.get(i)[1];
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                Intent specific = new Intent(getApplicationContext(), SpecificFavData.class);
+                startActivity(specific);
+            }
+        });
+
+        fav4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count=0;
+                for(int i=0; i<finalFav.size(); i++) {
+                    if(finalFav.get(i)[0].equals(MainActivity.email)) {
+                        if(count==4) {
+                            specFavData = (YelpData) finalFav.get(i)[1];
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                Intent specific = new Intent(getApplicationContext(), SpecificFavData.class);
+                startActivity(specific);
+            }
+        });
 
         remove0.setOnClickListener(new View.OnClickListener() {
             @Override

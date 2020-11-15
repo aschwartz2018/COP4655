@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Results extends FragmentActivity implements OnMapReadyCallback {
 
@@ -149,22 +150,36 @@ public class Results extends FragmentActivity implements OnMapReadyCallback {
         if(favCount == 6) {
             Toast.makeText(getApplicationContext(),"Can't add to favorites", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(),"Added to favorites", Toast.LENGTH_SHORT).show();
+            boolean alreadyExists = false;
 
             Object[] eachData = new Object[2];
             eachData[0] = MainActivity.email;
             eachData[1] = yelp[index];
-            favoriteData.add(eachData);
 
-            try
-            {
-                FileOutputStream fos = new FileOutputStream(new File(getFilesDir(), "favList.ser"));
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(favoriteData);
-                oos.close();
-                fos.close();
-            } catch(IOException ioe) {
-                ioe.printStackTrace();
+            for(int i=0; i<favoriteData.size(); i++) {
+                YelpData prevYelp = (YelpData) favoriteData.get(i)[1];
+                YelpData newYelp = (YelpData) eachData[1];
+                if(favoriteData.get(i)[0].equals(eachData[0]) && prevYelp.equals(newYelp)) {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+
+            if(alreadyExists) {
+                Toast.makeText(getApplicationContext(),"Business already added", Toast.LENGTH_SHORT).show();
+            } else {
+                favoriteData.add(eachData);
+                Toast.makeText(getApplicationContext(),"Added to favorites", Toast.LENGTH_SHORT).show();
+                try
+                {
+                    FileOutputStream fos = new FileOutputStream(new File(getFilesDir(), "favList.ser"));
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(favoriteData);
+                    oos.close();
+                    fos.close();
+                } catch(IOException ioe) {
+                    ioe.printStackTrace();
+                }
             }
         }
     }

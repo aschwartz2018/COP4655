@@ -17,40 +17,45 @@
             android:orientation="vertical"
             android:layout_weight="0.5">
 
-            <TextView
+            <Button
                 android:id="@+id/fav0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="13dp" />
+                style="?android:attr/borderlessButtonStyle"
+                android:textSize="13sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/fav1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="13dp" />
+                android:textSize="13sp"
+                style="?android:attr/borderlessButtonStyle"/>
 
-            <TextView
+            <Button
                 android:id="@+id/fav2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="13dp" />
+                android:textSize="13sp"
+                style="?android:attr/borderlessButtonStyle"/>
 
-            <TextView
+            <Button
                 android:id="@+id/fav3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="13dp" />
+                android:textSize="13sp"
+                style="?android:attr/borderlessButtonStyle"/>
 
-            <TextView
+            <Button
                 android:id="@+id/fav4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="13dp" />
+                android:textSize="13sp"
+                style="?android:attr/borderlessButtonStyle"/>
 
         </LinearLayout>
 
@@ -62,43 +67,43 @@
 
             <Button
                 android:id="@+id/remove0"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Remove"
-                android:textSize="10sp"
-                android:layout_marginBottom="6dp"/>
+                android:textSize="13sp"
+                android:layout_marginBottom="20dp"/>
 
             <Button
                 android:id="@+id/remove1"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Remove"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/remove2"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Remove"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/remove3"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Remove"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/remove4"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Remove"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 
