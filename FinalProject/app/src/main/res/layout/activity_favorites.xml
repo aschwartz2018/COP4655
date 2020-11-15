@@ -22,35 +22,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/fav1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/fav2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/fav3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/fav4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
         </LinearLayout>
 
