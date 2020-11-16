@@ -23,14 +23,16 @@
             android:layout_below="@id/sign_in_button"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="207dp"
-            android:text="This application lets the user search businesses in a location." />
+            android:text="This application lets the user search businesses in a location."
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/description"
             android:layout_centerHorizontal="true"
-            android:text="The user can mark a favorite business in Results tab." />
+            android:text="The user can mark a favorite business in Results tab."
+            android:textSize="12sp"/>
 
         <TextView
             android:layout_width="wrap_content"
