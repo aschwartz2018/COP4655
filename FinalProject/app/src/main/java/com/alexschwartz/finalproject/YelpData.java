@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class YelpData implements Serializable {
 
+    //Compares each variable to the variables of "y" object
     public boolean equals(YelpData y) {
         if(!this.name.equals(y.name)) {
             return false;
@@ -29,6 +30,7 @@ public class YelpData implements Serializable {
         return true;
     }
 
+    //Stores all the public variables needed for Yelp API
     public String name;
     public double rating;
     public String address;

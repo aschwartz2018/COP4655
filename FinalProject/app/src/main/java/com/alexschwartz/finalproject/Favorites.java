@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class Favorites extends AppCompatActivity {
 
+    //Have static variable for specific business from Favorites
     public static YelpData specFavData;
 
     @Override
@@ -25,8 +26,10 @@ public class Favorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        //Initially set favorites to null
         ArrayList<Object[]> fav = null;
 
+        //Get the favorite data from the favorite list .ser file
         try {
             FileInputStream fi = new FileInputStream(new File(getFilesDir(), "favList.ser"));
             ObjectInputStream oi = new ObjectInputStream(fi);
@@ -36,36 +39,44 @@ public class Favorites extends AppCompatActivity {
         } catch(Exception e) {
         }
 
+        //Get all the business name buttons from their ids
         Button fav0 = findViewById(R.id.fav0);
         Button fav1 = findViewById(R.id.fav1);
         Button fav2 = findViewById(R.id.fav2);
         Button fav3 = findViewById(R.id.fav3);
         Button fav4 = findViewById(R.id.fav4);
 
+        //Initially disable all of the business name buttons
         fav0.setEnabled(false);
         fav1.setEnabled(false);
         fav2.setEnabled(false);
         fav3.setEnabled(false);
         fav4.setEnabled(false);
 
+        //Get all the remove buttons from their ids
         Button remove0 = findViewById(R.id.remove0);
         Button remove1 = findViewById(R.id.remove1);
         Button remove2 = findViewById(R.id.remove2);
         Button remove3 = findViewById(R.id.remove3);
         Button remove4 = findViewById(R.id.remove4);
 
+        //Initially hide all of the remove buttons
         remove0.setVisibility(View.GONE);
         remove1.setVisibility(View.GONE);
         remove2.setVisibility(View.GONE);
         remove3.setVisibility(View.GONE);
         remove4.setVisibility(View.GONE);
 
+        //Displays the favorite business names for the buttons
+        //Allows them to be clicked to show more info
+        //And sets the specific remove buttons to visible
         int count=0;
         if(fav != null) {
             for (Object[] objArray : fav) {
                 String email = (String) objArray[0];
                 YelpData yelp = (YelpData) objArray[1];
 
+                //Only takes the data from the signed in user
                 if(MainActivity.email.equals(email)) {
                     if(count==0) {
                         fav0.setText(yelp.name);
@@ -93,6 +104,13 @@ public class Favorites extends AppCompatActivity {
             }
         }
         final ArrayList<Object[]> finalFav = fav;
+
+        /*
+            fav0, fav1, ... , fav4 are on click listeners
+            for up to the 5 business name buttons.
+            When the those buttons (they are transparent)
+            are clicked it goes to the SpecificFavData activity
+        */
 
         fav0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +197,13 @@ public class Favorites extends AppCompatActivity {
                 startActivity(specific);
             }
         });
+
+        /*
+            remove0, remove1, ... , remove4 are on click listeners
+            for up to the 5 remove buttons.
+            When a remove button is clicked, that specific business is deleted.
+            This activity will refresh with the business removed.
+        */
 
         remove0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -308,6 +333,7 @@ public class Favorites extends AppCompatActivity {
             }
         });
 
+        //Logic for the bottom nav bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.action_favorites).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
