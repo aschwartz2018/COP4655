@@ -1,5 +1,5 @@
-# COP4655 #
-Homeworks and Project in MobileApps class
+# Mobile Apps Class #
+
 ## Final Project ##
 
 <h3>Login Page, Home Page, and Search Page</h3>
