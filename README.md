@@ -1,6 +1,4 @@
-# Mobile Apps Class #
-
-## Final Project ##
+# Mobile Apps Final Project #
 
 <h3>Login Page, Home Page, and Search Page</h3>
 <html>
