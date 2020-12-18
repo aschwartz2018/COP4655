@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Yelp App</string>
-    <string name="google_maps_key">AIzaSyBEwHDGSfVViCsdNcbKgE0Wklv0xH-tFWw</string>
+    <string name="google_maps_key">API_KEY</string>
 </resources>
