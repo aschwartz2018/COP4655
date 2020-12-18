@@ -177,8 +177,9 @@ public class MainActivity extends AppCompatActivity {
                             dataList.setAdapter(arrayAdapter2);
                             dataList.setEnabled(false);
 
+                            //Replace API_KEY in link with your own Google Maps API key
                             String embedMap = "<iframe frameborder='0' style='width:100%; height:100%; border:0'"
-                                    +" src='https://www.google.com/maps/embed/v1/view?key=AIzaSyC0FDwy4JSx7rRULalVcSaz7K_9pOGJ8Yc&center="
+                                    +" src='https://www.google.com/maps/embed/v1/view?key=API_KEY&center="
                                     + latFromJSON + ","+ lonFromJSON + "&zoom=15'></iframe>";
 
                             WebView webview = (WebView) findViewById(R.id.myMap);
