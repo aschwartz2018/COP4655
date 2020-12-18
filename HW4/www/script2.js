@@ -15,5 +15,6 @@ $(document).ready(function() {
     $('#weather9').html(json.wind.deg + ' degrees');
     $('#weather10').html(json.coord.lon + ' lon, ' + json.coord.lat + ' lat')
 
-    $('#map').html('<p style="text-align:center"><iframe width="300" height="225" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC0FDwy4JSx7rRULalVcSaz7K_9pOGJ8Yc&center=' + json.coord.lat + ',' + json.coord.lon + '&zoom=15"></iframe></p>')
+    //Insert your Google Maps API key (replace API_KEY in the link)
+    $('#map').html('<p style="text-align:center"><iframe width="300" height="225" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=API_KEY&center=' + json.coord.lat + ',' + json.coord.lon + '&zoom=15"></iframe></p>')
 })
